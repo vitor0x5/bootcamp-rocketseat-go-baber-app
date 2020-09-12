@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import appointmentsRoutes from './appointments.routes';
 import usersRoutes from './users.routes';
 import sessionsRoutes from './sessions.routes';
@@ -9,7 +9,7 @@ routes.use('/users', usersRoutes);
 routes.use('/sessions', sessionsRoutes);
 
 routes.get('/', (request, response) => {
-	return response.json({ message: 'Hello World'});
-})
+  return response.json({ message: 'Hello World' });
+});
 
 export default routes;
