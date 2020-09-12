@@ -1,4 +1,4 @@
-#Go-Barber
+# Go-Barber
 
 ## Aplication Go-Barber that was implemented during the GoStack Bootcamp by Rocketseat
 
