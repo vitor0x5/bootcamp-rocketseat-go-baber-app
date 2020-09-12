@@ -1,2 +1,8 @@
 .gitignore
-node_modules
+node_modules/
+build/
+temp/
+
+tmp/*
+!tmp/.gitkeep
+
