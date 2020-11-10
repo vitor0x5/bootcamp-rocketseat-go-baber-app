@@ -2,6 +2,9 @@ import AuthenticateUserService from '@modules/users/services/AuthenticateUserSer
 import CreateUserService from '@modules/users/services/CreateUserService';
 import FakeUserRepository from '../repositories/fakes/FakeUsersRepository';
 
+// to use with dependency injection
+// import FakeHashProvider from '../providers/HashProvider/fakes/fakeHashProvider';
+
 describe('AuthenticateUser', () => {
   it('should be able to authenticate', async () => {
     const fakeUserRepository = new FakeUserRepository();
