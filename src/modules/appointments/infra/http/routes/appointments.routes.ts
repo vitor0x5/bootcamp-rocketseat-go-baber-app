@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
-import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 import AppointmentController from '@modules/appointments/infra/http/controllers/AppointmentController';
 
 const appointmentController = new AppointmentController();
