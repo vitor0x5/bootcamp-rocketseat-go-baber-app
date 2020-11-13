@@ -1,9 +1,4 @@
-import { getRepository } from 'typeorm';
-import path from 'path';
-import fs from 'fs';
-
 import AppError from '@shared/errors/AppError';
-import uploadConfig from '@config/upload';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { inject } from 'tsyringe';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
@@ -17,7 +12,6 @@ interface Request {
 export default class UpdateUserAvatarService {
   constructor(
     private userRepository: IUsersRepository,
-    @inject('StorageProvider')
     private storageProvider: IStorageProvider,
   ) {}
 
