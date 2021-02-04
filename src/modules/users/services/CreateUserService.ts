@@ -1,24 +1,28 @@
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
+import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import BCryptHashProvider from '@modules/users/providers/HashProvider/implementations/BCryptHashProvider';
-import User from '../infra/typeorm/entities/Users';
 
-interface Request {
+import User from '../infra/typeorm/entities/User';
+import IUsersRepository from '../repositories/IUsersRepository';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+
+interface IRequest {
   name: string;
   email: string;
   password: string;
 }
 
-export default class CreateUserService {
-  private hashProvider: IHashProvider;
+@injectable()
+class CreateUserService {
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
 
-  constructor(private usersRepository: IUsersRepository) {}
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
+  ) {}
 
-  async execute({ name, email, password }: Request): Promise<User> {
-    this.hashProvider = new BCryptHashProvider();
-
+  public async execute({ name, email, password }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {
@@ -27,10 +31,14 @@ export default class CreateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    return this.usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       email,
       password: hashedPassword,
     });
+
+    return user;
   }
 }
+
+export default CreateUserService;

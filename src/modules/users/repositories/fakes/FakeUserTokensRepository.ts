@@ -1,11 +1,13 @@
-import IUserTokenRepository from '@modules/users/repositories/IUserTokenRepository';
-import UserToken from '@modules/users/infra/typeorm/entities/UserToken';
 import { uuid } from 'uuidv4';
 
-class FakeUsersTokensRepository implements IUserTokenRepository {
+import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
+
+import UserToken from '../../infra/typeorm/entities/UserToken';
+
+class FakeUserTokensRepository implements IUserTokensRepository {
   private userTokens: UserToken[] = [];
 
-  generate(user_id: string): Promise<UserToken> {
+  public async generate(user_id: string): Promise<UserToken> {
     const userToken = new UserToken();
 
     Object.assign(userToken, {
@@ -18,8 +20,6 @@ class FakeUsersTokensRepository implements IUserTokenRepository {
 
     this.userTokens.push(userToken);
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     return userToken;
   }
 
@@ -32,4 +32,4 @@ class FakeUsersTokensRepository implements IUserTokenRepository {
   }
 }
 
-export default FakeUsersTokensRepository;
+export default FakeUserTokensRepository;
