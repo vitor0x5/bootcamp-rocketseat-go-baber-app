@@ -1,10 +1,11 @@
-import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
+import IStorageProvider from '../models/IStorageProvider';
 
-export default class FakeStorageProvider implements IStorageProvider {
+class FakeStorageProvider implements IStorageProvider {
   private storage: string[] = [];
 
   public async saveFile(file: string): Promise<string> {
     this.storage.push(file);
+
     return file;
   }
 
@@ -16,3 +17,5 @@ export default class FakeStorageProvider implements IStorageProvider {
     this.storage.splice(findIndex, 1);
   }
 }
+
+export default FakeStorageProvider;
