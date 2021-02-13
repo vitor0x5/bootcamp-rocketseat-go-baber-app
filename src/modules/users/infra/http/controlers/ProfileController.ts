@@ -28,6 +28,8 @@ export default class ProfileController {
       password,
     });
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     delete user.password;
 
     return response.json(user);
