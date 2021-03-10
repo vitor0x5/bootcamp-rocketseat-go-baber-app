@@ -1,5 +1,6 @@
 [
   {
+    "name": "default",
     "type": "postgres",
     "host": "localhost",
     "port": 5432,
@@ -25,7 +26,7 @@
     "database": "gobarber",
     "useUnifiedTopology": true,
     "entities": [
-      "./src/modules/users/infra/typeorm/schemas/*.ts"
+      "./src/modules/**/infra/typeorm/schemas/*.ts"
       ]
   }
 ]
