@@ -7,3 +7,4 @@ coverage
 ormconfig.json
 /jest.config.js
 /.idea/workspace.xml
+dist/
